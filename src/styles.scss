@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+
+.mdc-form-field {
+    font-family: var(--mdc-form-field-label-text-font);
+    line-height: var(--mdc-form-field-label-text-line-height);
+    font-size: var(--mdc-form-field-label-text-size);
+    font-weight: var(--mdc-form-field-label-text-weight);
+    letter-spacing: var(--mdc-form-field-label-text-tracking);
+    color: rgb(255 255 255 / 87%) !important;
+}
+
+
+.mat-mdc-radio-button.mat-accent {
+    --mdc-radio-disabled-selected-icon-color: #3c0c0c;
+    --mdc-radio-disabled-unselected-icon-color: #ffffff;
+    --mdc-radio-unselected-hover-icon-color: #ffffff;
+    --mdc-radio-unselected-icon-color: rgba(255, 255, 255, 0.54);
+    --mdc-radio-unselected-pressed-icon-color: rgba(255, 255, 255, 0.54);
+    --mdc-radio-selected-focus-icon-color: #602f40;
+    --mdc-radio-selected-hover-icon-color: #ffffff;
+    --mdc-radio-selected-icon-color: #ffffff;
+    --mdc-radio-selected-pressed-icon-color: #ffffff;
+    --mat-radio-ripple-color: #dadada;
+    --mat-radio-checked-ripple-color: #ffffff;
+    --mat-radio-disabled-label-color: rgba(255, 255, 255, 0.38);
+}
+
+.mat-mdc-tab-group, .mat-mdc-tab-nav-bar {
+    --mdc-tab-indicator-active-indicator-color: #ffffff;
+    --mat-tab-header-disabled-ripple-color: rgba(255, 255, 255, 0.38);
+    --mat-tab-header-pagination-icon-color: #ffffff;
+    --mat-tab-header-inactive-label-text-color: rgba(255, 255, 255, 0.6);
+    --mat-tab-header-active-label-text-color: #ffffff;
+    --mat-tab-header-active-ripple-color: #ffffff;
+    --mat-tab-header-inactive-ripple-color: #ffffff;
+    --mat-tab-header-inactive-focus-label-text-color: rgba(255, 255, 255, 0.6);
+    --mat-tab-header-inactive-hover-label-text-color: rgba(255, 255, 255, 0.6);
+    --mat-tab-header-active-focus-label-text-color: #ffffff;
+    --mat-tab-header-active-hover-label-text-color: #ffffff;
+    --mat-tab-header-active-focus-indicator-color: #ffffff;
+    --mat-tab-header-active-hover-indicator-color: #ffffff;
+}

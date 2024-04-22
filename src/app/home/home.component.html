@@ -1,0 +1,140 @@
+<div class="w-100" style="height: 93%; overflow: hidden;">
+  <div class="row h-100">
+
+    <!-- LHS SECTION -->
+    <div class="col-md-7" style="background-color: #dadada; padding: 20px;">
+      <div class="row mt-5 d-flex flex-direction-reverse">
+        <div class="col-md-6 text-center justify-content-center" style="background-color: #dadada">
+          <h1 class="mt-5" style="font-size: xxx-large;">ResuMate AI</h1>
+          <div class="centered">
+            <h3 class="subhead">Let AI streamline your hiring process. Our cutting-edge technology screens and
+              shortlists
+              resumes based on
+              HR-provided job descriptions, ensuring the perfect match for every position. Simplify hiring with
+              precision
+              and
+              efficiency.</h3>
+          </div>
+        </div>
+        <div class="col-md-5">
+          <img class="home-image" src="../../assets/home.png" width="100%" alt="">
+        </div>
+
+      </div>
+      <div class="row mt-5 d-flex flex-direction-reverse">
+        <div class="col-md-5">
+          <img class="home-image" src="../../assets/chats.svg" width="60%" alt="">
+        </div>
+        <div class="col-md-6 text-center justify-content-center" style="background-color: #dadada">
+          <h1 class="mt-5" style="font-size: xxx-large;">ResuInteract</h1>
+          <div class="centered">
+            <h3 class="subhead">Experience seamless interaction by uploading your resume to our platform and receive
+              rapid, AI-generated responses to your inquiries.
+              @if(!file){
+              <br> Upload resume to chat !
+              }
+            </h3>
+          </div>
+          @if(startChat){
+          <div class="letsChat" style="display: flex;justify-content: center;">
+            <button (click)="letsChat()" mat-raised-button color="rgba(255, 255, 255, 0.2)">Chat</button>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+
+    <!-- RHS SECTION -->
+    <div class="col-md-5 p-4" id="blackColumn">
+      <h3>Upload the resume below :</h3>
+      <form [formGroup]="jobForm" role="form" class="form-validate" name="jobForm">
+        <div class="drag">
+          <input class="drop-file" type="file" #fileDropRef id="fileDropRef" multiple (change)="onFileSelected($event)"
+            accept=".pdf" />
+          <svg style="margin-top: 1rem; color: #dadada;height: 30px;" viewBox="0 0 1024 1024" focusable="false"
+            data-icon="inbox" fill="currentColor" aria-hidden="true">
+            <path
+              d="M885.2 446.3l-.2-.8-112.2-285.1c-5-16.1-19.9-27.2-36.8-27.2H281.2c-17 0-32.1 11.3-36.9 27.6L139.4 443l-.3.7-.2.8c-1.3 4.9-1.7 9.9-1 14.8-.1 1.6-.2 3.2-.2 4.8V830a60.9 60.9 0 0060.8 60.8h627.2c33.5 0 60.8-27.3 60.9-60.8V464.1c0-1.3 0-2.6-.1-3.7.4-4.9 0-9.6-1.3-14.1zm-295.8-43l-.3 15.7c-.8 44.9-31.8 75.1-77.1 75.1-22.1 0-41.1-7.1-54.8-20.6S436 441.2 435.6 419l-.3-15.7H229.5L309 210h399.2l81.7 193.3H589.4zm-375 76.8h157.3c24.3 57.1 76 90.8 140.4 90.8 33.7 0 65-9.4 90.3-27.2 22.2-15.6 39.5-37.4 50.7-63.6h156.5V814H214.4V480.1z">
+            </path>
+          </svg>
+          @if (!showResumeName){
+          <p class="mt-1">Resume</p>
+          }
+          @else {
+          <p class="mt-1">{{resumeName}}</p>
+          }
+        </div>
+
+        <div class="description">
+          <h3>Job Description :</h3>
+          <textarea class="form-control" type="text" formControlName="description" rows="6" style="resize: none;"
+            [ngClass]="{ 'is-invalid': submitted && f['description'].errors }"></textarea>
+          @if (submitted && f['description'].errors) {
+          <div class="invalid-feedback">
+            @if (f['description'].errors['required']) {
+            <div>Description is required</div>
+            }
+          </div>
+          }
+        </div>
+        <div class="letsChat" style="display: flex;justify-content: center;">
+          <button [disabled]="jobForm.invalid || !file" [class.spinner]="loading" (click)="summitForm()"
+            mat-raised-button color="rgba(255, 255, 255, 0.2)">Submit</button>
+        </div>
+      </form>
+      <hr style="margin-top: 1rem;">
+      @if(showResponse)
+      {
+      <div class="mt-3">
+        <mat-tab-group animationDuration="2000ms">
+          <mat-tab label="About resume">
+            <mat-card class="mt-3" style="background-color: #373737">
+              <p style="color: #ffffff; margin-left: 1rem; margin-top: 1rem;">Summary: {{ feedback.summary }}</p>
+            </mat-card>
+          </mat-tab>
+          <mat-tab label="Keywords match">
+            <mat-card class="mt-3" style="background-color: #373737">
+              <p style="color: #ffffff; margin-left: 1rem; margin-top: 1rem;">Keywords matched: {{ feedback.keywordMatch
+                }}</p>
+            </mat-card>
+          </mat-tab>
+          <mat-tab label="Percentage match">
+            <mat-card class="mt-3" style="background-color: #373737">
+              <p style="color: #ffffff; margin-left: 1rem; margin-top: 1rem;">Percentage matched: {{
+                feedback.percentMatch }} %</p>
+            </mat-card>
+          </mat-tab>
+          <mat-tab label="Candiature status">
+            <mat-card class="mt-3" style="background-color: #373737">
+              <p style="color: #ffffff; margin-left: 1rem; margin-top: 1rem;">Status: {{ feedback.status }}</p>
+            </mat-card>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+      }
+      @else {
+      <div class="text-center" style="margin-top: 7rem">
+        <carousel [noWrap]="false">
+          @for(theory of theories; track theory){
+          <slide>
+            <div>
+              <h3>{{theory.head}}</h3>
+              <h3 class="mb-5">{{theory.theory}}</h3>
+            </div>
+          </slide>
+          }
+        </carousel>
+      </div>
+      }
+    </div>
+  </div>
+</div>
+<!-- Bottom Section -->
+<div class="bottom-container">
+  <!-- Footer -->
+  <footer class="text-muted">
+    <p class="text-center mt-3">"Streamlining HR processes with AI-powered resume screening."
+      Latest Version - v1.0 &copy; 2024 - Developed by Pooja Tambe and Tarun Raijade.</p>
+  </footer>
+</div>
